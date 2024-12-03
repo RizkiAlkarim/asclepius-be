@@ -2,7 +2,7 @@ import Hapi from '@hapi/hapi';
 import { loadModel } from './libs/ml.js';
 import InputError from './errors/input-error.js';
 import routes from './route.js';
-import dotenv, { configDotenv } from 'dotenv';
+import dotenv from 'dotenv';
 
 (async () => {
   dotenv.config()
@@ -15,7 +15,6 @@ import dotenv, { configDotenv } from 'dotenv';
       }
     }
   });
-  console.log(process.env.HOST)
 
   const model = await loadModel();
   server.app.model = model

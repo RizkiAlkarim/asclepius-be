@@ -2,7 +2,7 @@ import tf from '@tensorflow/tfjs-node';
 import InputError from '../errors/input-error.js'
 
 export async function loadModel() {
-  const model = 'https://storage.googleapis.com/asclepius-storagebucket/model/model.json';
+  const model = process.env.MODEL_URL;
   return tf.loadGraphModel(model);
 }
 
@@ -17,7 +17,6 @@ export async function predictCancerImage(model, imageBuffer) {
     const result = await model.predict(tensor).data()
     return result
   } catch(err){
-    console.log(err)
       throw new InputError('Terjadi kesalahan dalam melakukan prediksi')
   }
 }
